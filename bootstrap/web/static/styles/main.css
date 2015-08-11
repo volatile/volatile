@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+html,
+body {
+	margin: 0;
+}
+
+body {
+	color: #000;
+	font-family: Lato, sans-serif;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+header {
+	padding: 100px;
+}
