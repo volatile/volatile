@@ -38,7 +38,7 @@ When you're inside a Volatile app directory, just use…
 
 … to automatically recompile and rerun the app every time a file change.
 
-Finally, to get updated versions of the Volatile Core (https://github.com/volatile/core) and all official packages(https://github.com/volatile/core#official-handlers):
+Finally, to get updated versions of the Core (https://github.com/volatile/core) and all official packages (http://volatile.whitedevops.com#handlers-and-helpers):
 
 	$ volatile update
 */
