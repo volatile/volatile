@@ -17,7 +17,7 @@ In the terminal:
 
 	$ volatile new myapp
 
-… creates a new directory named "myapp", puts bootstrap code in, and runs it.
+… creates a new directory named "myapp" and puts bootstrap code in.
 
 If your future app will be an API, use the "api" argument:
 
@@ -30,6 +30,8 @@ In the terminal:
 	$ volatile run
 
 … recompiles and reruns the app in the current directory every time a file change.
+
+The app is run directly and is reachable at http://localhost:8080/.
 
 Update Volatile
 

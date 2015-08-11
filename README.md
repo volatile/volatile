@@ -19,13 +19,15 @@ $ go get github.com/volatile/volatile
 ```Shell
 $ volatile new myapp
 ```
-… creates a new directory named "myapp", puts bootstrap code in, and runs it.
+… creates a new directory named "myapp" and puts bootstrap code in.
 
 If your future app will be an API, use the `api` argument:
 
 ```Shell
 $ volatile new api myapp
 ```
+
+The app is run directly and is reachable at [localhost:8080](http://localhost:8080/).
 
 ### Run an app
 
