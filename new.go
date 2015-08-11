@@ -30,7 +30,7 @@ func new() {
 		}
 	}
 
-	dirPath := filepath.Clean("." + string(filepath.Separator) + appName)
+	dirPath := filepath.Clean(appName)
 
 	// Check destination is empty.
 	dst, _ := os.Open(dirPath)
@@ -41,7 +41,7 @@ func new() {
 	dst.Close()
 
 	exec.Command("mkdir", "-p", dirPath).Run()
-	exec.Command("cp", "-R", os.Getenv("GOPATH")+"/src/github.com/volatile/volatile/bootstrap/"+appType+"/", dirPath).Run()
+	exec.Command("cp", "-r", os.Getenv("GOPATH")+"/src/github.com/volatile/volatile/bootstrap/"+appType+"/", dirPath+"/").Run()
 	if err := os.Chdir(dirPath); err != nil {
 		panic(err)
 	}
