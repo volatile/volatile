@@ -5,15 +5,20 @@ It provides a pure handler (or "middleware") stack so you can perform actions do
 
 For a complete documentation, see the Volatile website (http://volatile.whitedevops.com).
 
-Installation
+Getting started
 
-In the terminal:
+1. Install Go
+
+Before creating an app with Volatile, you must have a working Go installation.
+Follow the official guide (https://golang.org/doc/install) (and don't forget to set your "GOPATH" (https://golang.org/doc/code.html) environment variable).
+
+2. Install Volatile
+
+Get the Volatile command line interface with the "go get" command:
 
 	$ go get github.com/volatile/volatile
 
-Create a new app
-
-In the terminal:
+3. Create a new app
 
 	$ volatile new myapp
 
@@ -23,22 +28,18 @@ If your future app will be an API, use the "api" argument:
 
 	$ volatile new api myapp
 
-Run an app
-
-In the terminal:
-
-	$ volatile run
-
-… recompiles and reruns the app in the current directory every time a file change.
-
 The app is run directly and is reachable at http://localhost:8080/.
 
-Update Volatile
+4. In the near future
 
-In the terminal:
+When you're inside a Volatile app directory, just use…
+
+	$ volatile
+
+… to automatically recompile and rerun the app every time a file change.
+
+Finally, to get updated versions of the Volatile Core (https://github.com/volatile/core) and all official packages(https://github.com/volatile/core#official-handlers):
 
 	$ volatile update
-
-… gets updated versions of the Volatile Core (https://github.com/volatile/core) and all official packages (https://github.com/volatile/core#official-handlers).
 */
 package main
