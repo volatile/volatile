@@ -17,6 +17,7 @@ var (
 		"github.com/volatile/log",
 		"github.com/volatile/response",
 		"github.com/volatile/route",
+		"github.com/volatile/secure",
 		"github.com/volatile/static",
 		"github.com/volatile/volatile",
 	}

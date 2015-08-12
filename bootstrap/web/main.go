@@ -7,6 +7,7 @@ import (
 	"github.com/volatile/log"
 	"github.com/volatile/response"
 	"github.com/volatile/route"
+	"github.com/volatile/secure"
 	"github.com/volatile/static"
 )
 
@@ -14,6 +15,7 @@ func main() {
 	if !core.Production {
 		log.Use()
 	}
+	secure.Use(nil)
 	compress.Use()
 	i18n.Use(locales, "en", true)
 	static.Use(static.DefaultMaxAge)
