@@ -28,7 +28,7 @@ If your future app will be an API, use the "api" argument:
 
 	$ volatile new api myapp
 
-The app is run directly and is reachable at http://localhost:8080/.
+The app runs directly and is reachable at http://localhost:8080/.
 
 4. In the near future
 
