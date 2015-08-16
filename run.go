@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	lastRun time.Time
+	lastMod time.Time
 
 	errModifiedApp = errors.New("app has been modified")
 )
@@ -47,7 +47,7 @@ func run() {
 	}
 
 	// Modification detection
-	lastRun = time.Now()
+	lastMod = time.Now()
 ModDetect:
 	for {
 		if err := filepath.Walk(".", modDetectWalk); err != nil {
@@ -71,11 +71,11 @@ ModDetect:
 	run()
 }
 
-func modDetectWalk(path string, f os.FileInfo, err error) error {
+func modDetectWalk(path string, fi os.FileInfo, err error) error {
 	if err != nil {
 		return err
 	}
-	if f.ModTime().After(lastRun) {
+	if fi.ModTime().After(lastMod) {
 		return errModifiedApp
 	}
 	return nil
