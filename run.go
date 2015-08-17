@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"path/filepath"
 	"time"
+
+	"github.com/whitedevops/atexit"
 )
 
 var (
@@ -28,6 +30,14 @@ func run() {
 	}
 	appName = filepath.Base(appName)
 
+	atexit.Use(func() {
+		os.Remove(appName)
+	})
+
+	runBuild(appName)
+}
+
+func runBuild(appName string) {
 	// Prepare building
 	buildCmd := exec.Command("go", "build", "-o", appName)
 	buildCmd.Stdout = os.Stdout
@@ -68,7 +78,7 @@ ModDetect:
 
 	// Rerun
 	log.Print("Rerunning server…\n\n")
-	run()
+	runBuild(appName)
 }
 
 func modDetectWalk(path string, fi os.FileInfo, err error) error {
