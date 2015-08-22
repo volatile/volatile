@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -13,7 +14,8 @@ import (
 )
 
 var (
-	lastMod time.Time
+	runParams []string
+	lastMod   time.Time
 
 	errModifiedApp = errors.New("app has been modified")
 )
@@ -34,6 +36,7 @@ func run() {
 		os.Remove(appName)
 	})
 
+	runParams = flag.Args()[1:]
 	runBuild(appName)
 }
 
@@ -44,7 +47,7 @@ func runBuild(appName string) {
 	buildCmd.Stderr = os.Stderr
 
 	// Prepare running
-	runCmd := exec.Command("./" + appName)
+	runCmd := exec.Command("./"+appName, runParams...)
 	runCmd.Stdout = os.Stdout
 	runCmd.Stderr = os.Stderr
 
