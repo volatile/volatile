@@ -36,7 +36,9 @@ func run() {
 		os.Remove(appName)
 	})
 
-	runParams = flag.Args()[1:]
+	if len(flag.Args()) > 1 {
+		runParams = flag.Args()[1:]
+	}
 	runBuild(appName)
 }
 
