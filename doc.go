@@ -18,6 +18,8 @@ Get the Volatile command line interface with the "go get" command:
 
 	$ go get github.com/volatile/volatile
 
+NOTICE: The Volatile command line interface is actually only compatible with Unix-based systems.
+
 3. Create a new app
 
 	$ volatile new myapp
@@ -37,6 +39,7 @@ When you're inside a Volatile app directory, just use…
 	$ volatile
 
 … to automatically recompile and rerun the app every time a file change.
+If a `buid.sh` file exists there, it will be executed before building and running your app.
 
 Finally, to get updated versions of the Core (https://github.com/volatile/core) and all official packages (http://volatile.whitedevops.com#handlers-and-helpers):
 
