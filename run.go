@@ -16,7 +16,7 @@ import (
 var (
 	runParams   []string
 	lastMod     time.Time
-	buildScript = "./build.sh"
+	buildScript = "./build"
 
 	errModifiedApp = errors.New("app has been modified")
 )
