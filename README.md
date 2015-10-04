@@ -47,7 +47,7 @@ $ volatile
 ```
 
 … to automatically recompile and rerun the app every time a file change.  
-If a `./build` file exists, it will be executed before building and running your app. Don't forget the shebang line on top of your script.
+A `./build` file can be used to automatically execute a bash script before building and running your app. Don't forget the shebang and the executability rights for this script!
 
 Finally, to get updated versions of the [Core](https://github.com/volatile/core) and all [official packages](http://volatile.whitedevops.com#handlers-and-helpers):
 

@@ -46,10 +46,6 @@ func run() {
 func runBuild(appName string) {
 	// Run executable local script
 	if fi, err := os.Stat(buildScript); err == nil && !fi.IsDir() {
-		if err = os.Chmod(buildScript, 0755); err != nil {
-			log.Println(err)
-			goto Build
-		}
 		script := exec.Command(buildScript)
 		script.Stdout = os.Stdout
 		script.Stderr = os.Stderr
@@ -58,7 +54,6 @@ func runBuild(appName string) {
 		}
 	}
 
-Build:
 	// Prepare building
 	buildCmd := exec.Command("go", "build", "-o", appName)
 	buildCmd.Stdout = os.Stdout
