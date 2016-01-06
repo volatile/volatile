@@ -10,7 +10,7 @@ Getting started
 1. Install Go
 
 Before creating an app with Volatile, you must have a working Go installation.
-Follow the official guide (https://golang.org/doc/install) (and don't forget to set your "GOPATH" (https://golang.org/doc/code.html) environment variable).
+Follow the official guide (https://golang.org/doc/install) (and don't forget to set your "GOPATH" (https://golang.org/doc/code.html#GOPATH) environment variable).
 
 2. Install Volatile
 

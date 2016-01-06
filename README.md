@@ -11,7 +11,7 @@ For a complete **documentation**, see the [Volatile website](http://volatile.whi
 ### 1. Install Go
 
 Before creating an app with Volatile, you must have a working Go installation.  
-Follow the [official guide](https://golang.org/doc/install) (and don't forget to set your [`GOPATH`](https://golang.org/doc/code.html) environment variable).
+Follow the [official guide](https://golang.org/doc/install) (and don't forget to set your [`GOPATH`](https://golang.org/doc/code.html#GOPATH) environment variable).
 
 ### 2. Install Volatile
 
@@ -28,6 +28,7 @@ $ go get github.com/volatile/volatile
 ```Shell
 $ volatile new myapp
 ```
+
 … creates a new directory named "myapp" and puts bootstrap code in.
 
 If your future app will be an API, use the `api` argument:
