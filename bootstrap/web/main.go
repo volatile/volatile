@@ -9,19 +9,21 @@ import (
 	"github.com/volatile/route"
 	"github.com/volatile/secure"
 	"github.com/volatile/static"
+	"golang.org/x/text/language"
 )
 
 func main() {
+	i18n.Use(locales, language.English, true)
+
 	if !core.Production {
 		log.Use()
 	}
 	secure.Use(nil)
 	compress.Use()
-	i18n.Use(locales, "en", true)
 	static.Use(static.DefaultMaxAge)
 
 	route.Get("^/$", func(c *core.Context) {
-		response.View(c, "hello", nil)
+		response.Template(c, "hello", nil)
 	})
 
 	core.Run()

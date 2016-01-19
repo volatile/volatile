@@ -1,13 +1,18 @@
 package main
 
-import "github.com/volatile/i18n"
+import (
+	"github.com/volatile/i18n"
+	"golang.org/x/text/language"
+)
 
 var locales = i18n.Locales{
-	"en": i18n.Locale{
+
+	language.English: {
 		"decimalMark":   ".",
 		"thousandsMark": ",",
 	},
-	"fr": i18n.Locale{
+
+	language.French: {
 		"decimalMark":   ",",
 		"thousandsMark": " ",
 	},
