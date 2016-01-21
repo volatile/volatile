@@ -10,12 +10,12 @@ var locales = i18n.Locales{
 		"decimalMark":   ".",
 		"thousandsMark": ",",
 
-		"hello": "Welcome to your Volatile new app.",
+		"hello": "Welcome to your new app.",
 	},
 	language.French: {
 		"decimalMark":   ",",
 		"thousandsMark": " ",
 
-		"hello": "Bienvenue sur votre nouvelle app Volatile.",
+		"hello": "Bienvenue sur votre nouvelle app.",
 	},
 }
