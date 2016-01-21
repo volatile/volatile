@@ -1,6 +1,10 @@
 package main
 
 import (
+	"flag"
+	"math/rand"
+	"time"
+
 	"github.com/volatile/compress"
 	"github.com/volatile/core"
 	"github.com/volatile/i18n"
@@ -13,7 +17,17 @@ import (
 )
 
 func main() {
+	// Initialization
+
+	if core.Production {
+		rand.Seed(time.Now().UTC().UnixNano())
+	}
+	flag.Parse()
+
 	i18n.Use(locales, language.English, true)
+	response.TemplatesFuncs(i18n.TemplatesFuncs)
+
+	// Handlers
 
 	if !core.Production {
 		log.Use()

@@ -1,7 +1,10 @@
 package main
 
 import (
+	"flag"
+	"math/rand"
 	"strconv"
+	"time"
 
 	"github.com/volatile/compress"
 	"github.com/volatile/core"
@@ -13,6 +16,15 @@ import (
 )
 
 func main() {
+	// Initialization
+
+	if core.Production {
+		rand.Seed(time.Now().UTC().UnixNano())
+	}
+	flag.Parse()
+
+	// Handlers
+
 	if !core.Production {
 		log.Use()
 	}

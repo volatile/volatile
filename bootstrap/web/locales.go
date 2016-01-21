@@ -6,14 +6,16 @@ import (
 )
 
 var locales = i18n.Locales{
-
 	language.English: {
 		"decimalMark":   ".",
 		"thousandsMark": ",",
-	},
 
+		"hello": "Welcome to your Volatile new app.",
+	},
 	language.French: {
 		"decimalMark":   ",",
 		"thousandsMark": " ",
+
+		"hello": "Bienvenue sur votre nouvelle app Volatile.",
 	},
 }

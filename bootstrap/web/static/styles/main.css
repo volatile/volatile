@@ -1,3 +1,16 @@
+/* Helpers */
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: "";
+}
+.clearfix:after {
+	clear: both;
+}
+
+/* Reset */
+
 * {
 	box-sizing: border-box;
 }
@@ -6,18 +19,49 @@
 	outline: none;
 }
 
+/* Main */
+
 html,
 body {
 	margin: 0;
 }
 
 body {
+	background: #fff;
 	color: #000;
-	font-family: Lato, sans-serif;
-	font-size: 16px;
+	font-family: Roboto, sans-serif;
 	line-height: 1.4;
 }
 
-header {
-	padding: 100px;
+footer,
+header,
+main {
+	margin: 100px;
+}
+
+footer{
+	color: #c7c7cc;
+	font-size: .8em;
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 300;
+}
+
+/* Links */
+
+a,
+a:link,
+a:visited {
+	color: #007aff;
+	text-decoration: none;
+	transition: color .2s;
+}
+
+a:active,
+a:focus,
+a:hover  {
+	color: #5856d6;
 }

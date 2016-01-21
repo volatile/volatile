@@ -1,16 +1,6 @@
 {{define "hello"}}
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<title>Volatile — New App</title>
-			<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400,700">
-			<link rel="stylesheet" href="/static/styles/main.css">
-		</head>
-		<body>
-			<header>
-				Volatile — New App
-			</header>
-			<script src="/static/scripts/main.js"></script>
-		</body>
-	</html>
+	{{template "header" .}}
+	<h1>Volatile</h1>
+	<p>{{t .c "hello"}}</p>
+	{{template "footer" .}}
 {{end}}
