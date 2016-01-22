@@ -1,14 +1,3 @@
-/* Helpers */
-
-.clearfix:before,
-.clearfix:after {
-	display: table;
-	content: "";
-}
-.clearfix:after {
-	clear: both;
-}
-
 /* Reset */
 
 * {
@@ -17,6 +6,11 @@
 
 *:focus {
 	outline: none;
+}
+
+menu {
+	margin: 0;
+	padding: 0;
 }
 
 /* Main */
@@ -32,13 +26,13 @@ body {
 	font: 1em/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-footer,
 header,
-main {
+main,
+footer {
 	margin: 100px;
 }
 
-footer{
+footer {
 	color: #c7c7cc;
 	font-size: .8em;
 }
@@ -61,6 +55,6 @@ a:visited {
 
 a:active,
 a:focus,
-a:hover  {
+a:hover {
 	color: #5856d6;
 }
