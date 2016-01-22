@@ -45,9 +45,7 @@ h3 {
 
 /* Links */
 
-a,
-a:link,
-a:visited {
+a {
 	color: #007aff;
 	text-decoration: none;
 	transition: color .2s;
