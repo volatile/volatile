@@ -24,7 +24,7 @@ func main() {
 	}
 	flag.Parse()
 
-	i18n.Use(locales, language.English, true)
+	i18n.Init(locales, language.English)
 	response.TemplatesFuncs(i18n.TemplatesFuncs)
 
 	// Handlers
@@ -35,6 +35,7 @@ func main() {
 	secure.Use(nil)
 	compress.Use()
 	static.Use(static.DefaultMaxAge)
+	i18n.Use(i18n.MatcherFormValue, i18n.MatcherAcceptLanguageHeader)
 
 	route.Get("^/$", func(c *core.Context) {
 		response.Template(c, "hello", nil)

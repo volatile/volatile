@@ -1,48 +1,32 @@
 /*
-Volatile is the perfect foundation for any web app as it's designed to have the best balance between readability, flexibility and performance.
+Volatile CLI is a tool for managing Volatile app source code.
 
-It provides a pure handler (or "middleware") stack so you can perform actions downstream, then filter and manipulate the response upstream.
+Installation
 
-For a complete documentation, see the Volatile website (http://volatile.whitedevops.com).
+	go get github.com/volatile/volatile
 
-Getting started
+NOTE: The Volatile CLI is actually only compatible with Unix-based systems.
 
-1. Install Go
+New app
 
-Before creating an app with Volatile, you must have a working Go installation.
-Follow the official guide (https://golang.org/doc/install) (and don't forget to set your "GOPATH" (https://golang.org/doc/code.html#GOPATH) environment variable).
+	volatile new myapp
+makes a new directory named "myapp" and puts bootstrap code in.
 
-2. Install Volatile
+If your app will be an API, use the api argument:
+	volatile new api myapp
 
-Get the Volatile command line interface with the "go get" command:
+Run app
 
-	$ go get github.com/volatile/volatile
+When you are inside a Volatile app directory, just use
+	volatile
+to automatically recompile and rerun the app every time a file change.
 
-NOTICE: The Volatile command line interface is actually only compatible with Unix-based systems.
+A ./build file can be used to automatically execute a shell script before building and running your app.
+Don't forget the shebang and the executability rights for this script!
 
-3. Create a new app
+Update Volatile
 
-	$ volatile new myapp
-
-… creates a new directory named "myapp" and puts bootstrap code in.
-
-If your future app will be an API, use the "api" argument:
-
-	$ volatile new api myapp
-
-The app runs directly and is reachable at http://localhost:8080/.
-
-4. In the near future
-
-When you're inside a Volatile app directory, just use…
-
-	$ volatile
-
-… to automatically recompile and rerun the app every time a file change.
-A ./build file can be used to automatically execute a bash script before building and running your app. Don't forget the shebang and the executability rights for this script!
-
-Finally, to get updated versions of the Core (https://github.com/volatile/core) and all official packages (http://volatile.whitedevops.com#handlers-and-helpers):
-
-	$ volatile update
+To get updated versions of the core (https://godoc.org/github.com/volatile/core) and all handlers and helpers (https://godoc.org/github.com/volatile/core#hdr-Handlers_and_helpers):
+	volatile update
 */
 package main

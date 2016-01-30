@@ -45,5 +45,4 @@ func new() {
 	if err := os.Chdir(dirPath); err != nil {
 		panic(err)
 	}
-	run()
 }

@@ -16,7 +16,7 @@ Without command, 'volatile' recompiles and reruns the app in the current directo
 
 The commands are:
 
-    new [type] [name]  bootstrap and run an app of desired type ('web' or 'api') and name
+    new [type] [name]  bootstrap an app of desired type ('web' or 'api') and name
     run [arguments]    recompile and rerun app with arguments every time a file change
     update             get updated versions of the Volatile Core and all official packages
 
