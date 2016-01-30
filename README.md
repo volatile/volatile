@@ -4,6 +4,7 @@ Volatile CLI is a tool for managing Volatile app source code.
 
 ## Installation
 
+Get the Volatile CLI:
 ```Shell
 go get github.com/volatile/volatile
 ```
@@ -12,6 +13,7 @@ go get github.com/volatile/volatile
 
 ## New app
 
+Command
 ```Shell
 volatile new myapp
 ```

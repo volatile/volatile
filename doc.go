@@ -3,12 +3,14 @@ Volatile CLI is a tool for managing Volatile app source code.
 
 Installation
 
+Get the Volatile CLI:
 	go get github.com/volatile/volatile
 
 NOTE: The Volatile CLI is actually only compatible with Unix-based systems.
 
 New app
 
+Command
 	volatile new myapp
 makes a new directory named "myapp" and puts bootstrap code in.
 
