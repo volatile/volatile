@@ -19,7 +19,7 @@ volatile new myapp
 ```
 makes a new directory named "myapp" and puts bootstrap code in.
 
-If your app will be an API, use the api argument:
+If your app will be an API, use the `api` argument:
 ```Shell
 volatile new api myapp
 ```
