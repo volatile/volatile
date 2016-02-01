@@ -19,7 +19,7 @@ body {
 body {
 	background: #fff;
 	color: #000;
-	font: 1em/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 16px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 header,
@@ -63,8 +63,6 @@ h6 {
 	font-weight: 600;
 }
 
-/* Links */
-
 a {
 	color: #007aff;
 	text-decoration: none;
@@ -75,4 +73,8 @@ a:active,
 a:focus,
 a:hover {
 	color: #5856d6;
+}
+
+code {
+	font-family: Menlo, Consolas, "Courier New", Courier, monospace;
 }
