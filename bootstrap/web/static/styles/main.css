@@ -22,9 +22,9 @@ body {
 	font: 16px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+footer,
 header,
-main,
-footer {
+main {
 	margin: 100px;
 }
 
