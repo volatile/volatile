@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -13,9 +14,7 @@ import (
 )
 
 var (
-	lastMod     time.Time
-	buildScript = "./build"
-
+	lastMod  time.Time
 	errIsMod = errors.New("app is modified")
 )
 
@@ -43,14 +42,15 @@ func cmdRun() {
 
 func build(name string, args ...string) {
 	// Run executable local script
-	fi, err := os.Stat(buildScript)
+	fi, err := os.Stat("Makefile")
 	if err == nil && !fi.IsDir() {
-		script := exec.Command(buildScript)
+		script := exec.Command("make")
 		script.Stdout = os.Stdout
 		script.Stderr = os.Stderr
 		if err = script.Run(); err != nil {
 			log.Println(err)
 		}
+		fmt.Print("\n")
 	}
 
 	// Prepare building
