@@ -23,8 +23,7 @@ When you are inside a Volatile app directory, just use
 	volatile
 to automatically recompile and rerun the app every time a file change.
 
-A ./build file can be used to automatically execute a shell script before building and running your app.
-Don't forget the shebang and the executability rights for this script!
+When a Makefile is present, the make command is triggered before building and running your app.
 
 Update Volatile
 
