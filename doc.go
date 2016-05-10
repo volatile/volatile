@@ -28,7 +28,7 @@ Don't forget the shebang and the executability rights for this script!
 
 Update Volatile
 
-To get updated versions of the core (https://godoc.org/github.com/volatile/core) and all handlers and helpers (https://godoc.org/github.com/volatile/core#hdr-Handlers_and_helpers):
+To get updated versions of the Volatile CLI, the core (https://godoc.org/github.com/volatile/core) and all handlers and helpers (https://godoc.org/github.com/volatile/core#hdr-Handlers_and_helpers):
 	volatile update
 */
 package main

@@ -2,14 +2,13 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
 )
 
-func new() {
-	update()
+func cmdNew() {
+	cmdUpdate()
 
 	appType := "web"
 	appName := "app"
@@ -35,14 +34,12 @@ func new() {
 	// Check destination is empty.
 	dst, _ := os.Open(dirPath)
 	if names, _ := dst.Readdirnames(1); len(names) != 0 {
-		fmt.Println("volatile new: destination must be empty")
-		os.Exit(1)
+		errorExit("destination is not empty")
 	}
 	dst.Close()
 
 	exec.Command("mkdir", "-p", dirPath).Run()
 	exec.Command("cp", "-r", os.Getenv("GOPATH")+"/src/github.com/volatile/volatile/bootstrap/"+appType+"/.", dirPath+"/.").Run()
-	if err := os.Chdir(dirPath); err != nil {
-		panic(err)
-	}
+
+	os.Exit(0)
 }

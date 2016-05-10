@@ -5,70 +5,69 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
-)
 
-var (
-	allPackages = []string{
-		"github.com/volatile/compress",
-		"github.com/volatile/core",
-		"github.com/volatile/cors",
-		"github.com/volatile/i18n",
-		"github.com/volatile/log",
-		"github.com/volatile/response",
-		"github.com/volatile/route",
-		"github.com/volatile/secure",
-		"github.com/volatile/static",
-		"github.com/volatile/volatile",
-	}
+	"github.com/whitedevops/colors"
 )
 
 func main() {
 	flag.Parse()
 
-	if flag.Args() == nil {
-		help()
-		return
-	}
-
 	switch flag.Arg(0) {
 	case "":
-		if len(flag.Args()) == 0 && isVolatile() {
-			run()
+		if len(flag.Args()) == 0 && isVolatile(false) {
+			cmdRun()
 		} else {
-			help()
+			cmdHelp()
 		}
 	case "help":
-		help()
+		cmdHelp()
 	case "new":
-		new()
+		cmdNew()
 	case "run":
-		run()
+		cmdRun()
 	case "update":
-		update()
+		cmdUpdate()
 	default:
-		fmt.Printf("volatile: unknown subcommand %q\nRun 'volatile help' for usage.\n", flag.Arg(0))
+		cmdHelp()
 	}
 }
 
-func isVolatile() bool {
+func isVolatile(flagsRequired bool) bool {
 	files, err := ioutil.ReadDir(".")
 	if err != nil {
-		panic(err)
+		errorExit("fail reading current directory")
 	}
 
 	for _, f := range files {
-		if !f.IsDir() && filepath.Ext(f.Name()) == ".go" {
-			b, err := ioutil.ReadFile(f.Name())
-			if err != nil {
-				panic(err)
+		if f.IsDir() || filepath.Ext(f.Name()) != ".go" {
+			continue
+		}
+
+		b, err := ioutil.ReadFile(f.Name())
+		if err != nil {
+			errorExit("fail reading file " + f.Name())
+		}
+
+		if bytes.Contains(b, []byte("\nfunc main() {\n")) && bytes.Contains(b, []byte("core.Run()")) {
+			if flagsRequired {
+				return bytes.Contains(b, []byte("flag.Parse()"))
 			}
 
-			if bytes.Contains(b, []byte("\tcore.Run()")) {
-				return true
-			}
+			return true
 		}
 	}
 
 	return false
+}
+
+func errorExit(err string) {
+	fmt.Print("volatile")
+	if cmd := flag.Arg(0); cmd != "" {
+		fmt.Print(" " + cmd)
+	}
+	fmt.Printf(": %s%s%s\n", colors.Red, err, colors.ResetAll)
+
+	os.Exit(1)
 }

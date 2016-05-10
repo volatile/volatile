@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -14,38 +13,38 @@ import (
 )
 
 var (
-	runParams   []string
 	lastMod     time.Time
 	buildScript = "./build"
 
-	errModifiedApp = errors.New("app has been modified")
+	errIsMod = errors.New("app is modified")
 )
 
-func run() {
-	if !isVolatile() {
-		fmt.Println("volatile run: no runnable app detected")
-		os.Exit(1)
+func cmdRun() {
+	if !isVolatile(false) {
+		errorExit("no runnable app detected")
 	}
 
-	appName, err := os.Getwd()
+	name, err := os.Getwd()
 	if err != nil {
-		panic(err)
+		errorExit("faild getting current directory name")
 	}
-	appName = filepath.Base(appName)
+	name = filepath.Base(name)
 
 	atexit.Use(func() {
-		os.Remove(appName)
+		os.Remove(name)
 	})
 
+	var args []string
 	if len(flag.Args()) > 1 {
-		runParams = flag.Args()[1:]
+		args = flag.Args()[1:]
 	}
-	runBuild(appName)
+	build(name, args...)
 }
 
-func runBuild(appName string) {
+func build(name string, args ...string) {
 	// Run executable local script
-	if fi, err := os.Stat(buildScript); err == nil && !fi.IsDir() {
+	fi, err := os.Stat(buildScript)
+	if err == nil && !fi.IsDir() {
 		script := exec.Command(buildScript)
 		script.Stdout = os.Stdout
 		script.Stderr = os.Stderr
@@ -55,19 +54,18 @@ func runBuild(appName string) {
 	}
 
 	// Prepare building
-	buildCmd := exec.Command("go", "build", "-o", appName)
+	buildCmd := exec.Command("go", "build", "-o", name)
 	buildCmd.Stdout = os.Stdout
 	buildCmd.Stderr = os.Stderr
 
 	// Prepare running
-	runCmd := exec.Command("./"+appName, runParams...)
+	runCmd := exec.Command("./"+name, args...)
 	runCmd.Stdout = os.Stdout
 	runCmd.Stderr = os.Stderr
 
-	running := false
-
 	// Build and run
-	if err := buildCmd.Run(); err == nil {
+	running := false
+	if err = buildCmd.Run(); err == nil {
 		runCmd.Start()
 		running = true
 	}
@@ -76,33 +74,34 @@ func runBuild(appName string) {
 	lastMod = time.Now()
 ModDetect:
 	for {
-		if err := filepath.Walk(".", modDetectWalk); err != nil {
-			if err == errModifiedApp {
+		if err = filepath.Walk(".", isMod); err != nil {
+			if err == errIsMod {
 				break ModDetect
 			}
-			panic(err)
+			errorExit("fail detecting modifications")
 		}
 		time.Sleep(500 * time.Millisecond)
 	}
 
 	// Interrupt
 	if running {
-		if err := runCmd.Process.Signal(os.Interrupt); err != nil {
+		if err = runCmd.Process.Signal(os.Interrupt); err != nil {
 			runCmd.Process.Kill()
 		}
 	}
 
 	// Rerun
 	log.Print("Rerunning server…\n\n")
-	runBuild(appName)
+	build(name, args...)
 }
 
-func modDetectWalk(path string, fi os.FileInfo, err error) error {
+// isMod is a walk function to detect app modifications.
+func isMod(path string, fi os.FileInfo, err error) error {
 	if err != nil {
 		return err
 	}
 	if fi.ModTime().After(lastMod) {
-		return errModifiedApp
+		return errIsMod
 	}
 	return nil
 }
